@@ -1,0 +1,86 @@
+﻿@*  @model List<Patient> *@
+<head>
+    @*     <link href="https://unpkg.com/tabulator-tables@6.3.0/dist/css/tabulator.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"> *@
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<div class="container">
+    <div class="row pt-4 pb-2">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Doctor List
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Patient" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i>
+                Create New Company
+            </a>
+        </div>
+    </div>
+    <div class="container-fluid">
+        @*         <div id="CompanyTable"></div>
+        <div id="dataContainer"></div> *@
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    PatientID
+                </th>
+                <th>
+                    FirstName
+                </th>
+                <th>
+                    LastName
+                </th>
+                <th>
+                    DateOfBirth
+                </th>
+                <th>
+                    Gender
+                </th>
+                <th>
+                    ContactNumber
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Edit
+                </th>
+                <th>
+                    Delete
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj2 in Model)
+            {
+                <tr>
+                    <td>@obj2.PatientID</td>
+                    <td>@obj2.FirstName</td>
+                    <td>@obj2.LastName</td>
+                    <td>@obj2.DateOfBirth</td>
+                    <td>@obj2.Gender</td>
+                    <td>@obj2.ContactNumber</td>
+                    <td>@obj2.Email</td>
+                    <td>@obj2.Address</td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Patient" asp-action="Edit" asp-route-Id="@obj2.PatientID" class="btn btn-primary mx-2"><i class="bi bi-pencil-fill"></i></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Patient" asp-action="DeletePOST" asp-route-Id="@obj2.PatientID" class="btn btn-danger mx-2"><i class="bi bi-trash3"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
